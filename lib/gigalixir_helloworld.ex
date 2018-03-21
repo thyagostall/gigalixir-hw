@@ -9,7 +9,7 @@ defmodule GigalixirHelloworld do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(GigalixirHelloworld.Repo, []),
+      # supervisor(GigalixirHelloworld.Repo, []),
       # Start the endpoint when the application starts
       supervisor(GigalixirHelloworld.Endpoint, []),
       # Start your own worker by calling: GigalixirHelloworld.Worker.start_link(arg1, arg2, arg3)

@@ -18,6 +18,8 @@ defmodule GigalixirHelloworld.Router do
 
     get "/", PageController, :index
     get "/hello-world/:name", HelloWorldController, :hello_world
+    get "/users/", UserController, :index
+    get "/users/:id", UserController, :show
   end
 
   # Other scopes may use custom stacks.
