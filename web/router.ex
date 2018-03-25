@@ -17,9 +17,7 @@ defmodule GigalixirHelloworld.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/hello-world/:name", HelloWorldController, :hello_world
-    get "/users/", UserController, :index
-    get "/users/:id", UserController, :show
+    resources "/users", UserController, only: [:index, :new, :show, :create]
   end
 
   # Other scopes may use custom stacks.
