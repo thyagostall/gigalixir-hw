@@ -6,6 +6,7 @@ defmodule GigalixirHelloworld.Video do
     field :title, :string
     field :description, :string
     belongs_to :user, GigalixirHelloworld.User, foreign_key: :user_id
+    belongs_to :category, GigalixirHelloworld.Category, foreign_key: :category_id
 
     timestamps()
   end
