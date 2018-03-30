@@ -37,6 +37,8 @@ defmodule GigalixirHelloworld.Web do
 
       import GigalixirHelloworld.Router.Helpers
       import GigalixirHelloworld.Gettext
+
+      import GigalixirHelloworld.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -59,6 +61,8 @@ defmodule GigalixirHelloworld.Web do
   def router do
     quote do
       use Phoenix.Router
+
+      import GigalixirHelloworld.Auth, only: [authenticate_user: 2]
     end
   end
 
