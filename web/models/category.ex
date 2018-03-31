@@ -3,6 +3,7 @@ defmodule GigalixirHelloworld.Category do
 
   schema "categories" do
     field :name, :string
+    has_many :videos, GigalixirHelloworld.Video
 
     timestamps()
   end

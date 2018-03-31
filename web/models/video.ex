@@ -16,7 +16,8 @@ defmodule GigalixirHelloworld.Video do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:url, :title, :description])
+    |> cast(params, [:url, :title, :description, :category_id])
     |> validate_required([:url, :title, :description])
+    |> foreign_key_constraint(:category_id)
   end
 end

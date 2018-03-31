@@ -36,6 +36,7 @@ defmodule GigalixirHelloworld.VideoController do
 
   def show(conn, %{"id" => id}, user) do
     video = Repo.get!(user_videos(user), id)
+    |> Repo.preload(:category)
     render(conn, "show.html", video: video)
   end
 
