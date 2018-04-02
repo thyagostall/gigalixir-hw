@@ -29,6 +29,19 @@ defmodule GigalixirHelloworld.Web do
 
   def controller do
     quote do
+      unquote generic_controller()
+      import GigalixirHelloworld.Auth, only: [authenticate_user: 2]
+    end
+  end
+
+  def unauthenticated_controller do
+    quote do
+      unquote generic_controller()
+    end
+  end
+
+  defp generic_controller do
+    quote do
       use Phoenix.Controller
 
       alias GigalixirHelloworld.Repo
