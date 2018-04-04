@@ -45,10 +45,7 @@ defmodule GigalixirHelloworld.Auth do
     if conn.assigns.current_user do
       conn
     else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page.")
-      |> redirect(to: Helpers.page_path(conn, :index))
-      |> halt()
+      raise Phoenix.Router.NoRouteError
     end
   end
 end
