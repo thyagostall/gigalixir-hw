@@ -25,6 +25,7 @@ defmodule GigalixirHelloworld.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
+      import GigalixirHelloworld.TestHelpers
       import GigalixirHelloworld.Router.Helpers
 
       # The default endpoint for testing
