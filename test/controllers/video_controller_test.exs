@@ -15,10 +15,30 @@ defmodule GigalixirHelloworld.VideoControllerTest do
     end
   end
 
+  test "requires user authentication on all actions", %{conn: conn} do
+    Enum.each([
+      get(conn, video_path(conn, :new)),
+      get(conn, video_path(conn, :index)),
+      get(conn, video_path(conn, :show, "123")),
+      get(conn, video_path(conn, :edit, "123")),
+      put(conn, video_path(conn, :update, "123", %{})),
+      post(conn, video_path(conn, :create, %{})),
+      delete(conn, video_path(conn, :delete, "123")),
+      ], fn conn ->
+        assert html_response(conn, 404)
+        assert conn.halted
+      end)
+  end
+
   @tag login_as: "max"
-  test "lists all entries on index", %{conn: conn} do
+  test "lists all user's videos on index", %{conn: conn, user: user} do
+    user_video = insert_video(user, title: "my video")
+    other_video = insert_video(insert_user(username: "other"), title: "other video")
+
     conn = get conn, video_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing videos"
+    assert html_response(conn, 200) =~ ~r/Listing videos/
+    assert String.contains?(conn.resp_body, user_video.title)
+    refute String.contains?(conn.resp_body, other_video.title)
   end
 
   @tag login_as: "max"

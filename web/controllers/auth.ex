@@ -52,7 +52,10 @@ defmodule GigalixirHelloworld.Auth do
     if conn.assigns.current_user do
       conn
     else
-      raise Phoenix.Router.NoRouteError
+      conn
+      |> put_status(404)
+      |> render(GigalixirHelloworld.ErrorView, :"404")      
+      |> halt()
     end
   end
 end
