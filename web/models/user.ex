@@ -1,7 +1,7 @@
 defmodule GigalixirHelloworld.User do
   use GigalixirHelloworld.Web, :model
 
-  alias Comeonin.Bcryt
+  alias Comeonin.Bcrypt
 
   schema "users" do
     field :name, :string
