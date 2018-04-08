@@ -103,4 +103,24 @@ defmodule GigalixirHelloworld.VideoControllerTest do
     assert redirected_to(conn) == video_path(conn, :index)
     refute Repo.get(Video, video.id)
   end
+
+  @tag login_as: "max"
+  test "authorizes actions against access by other users", %{conn: conn, user: user} do
+    video = insert_video(user, @valid_attrs)
+    another_user = insert_user(username: "sneaky")
+    conn = assign(conn, :current_user, another_user)
+
+    assert_error_sent :not_found, fn ->
+      get(conn, video_path(conn, :show, video))
+    end
+    assert_error_sent :not_found, fn ->
+      get(conn, video_path(conn, :edit, video))
+    end
+    assert_error_sent :not_found, fn ->
+      get(conn, video_path(conn, :update, video))
+    end
+    assert_error_sent :not_found, fn ->
+      get(conn, video_path(conn, :delete, video))
+    end
+  end
 end
