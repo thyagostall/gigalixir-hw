@@ -21,6 +21,7 @@ defmodule GigalixirHelloworld.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import GigalixirHelloworld.TestHelpers      
       import GigalixirHelloworld.ModelCase
     end
   end
